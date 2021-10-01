@@ -27,13 +27,12 @@ const webpackConfig = (env): Configuration => ({
             },
             {
                 test: /\.(sass|css|scss)$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    "postcss-loader",
-                    'sass-loader',
-                ]
+                use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
             },
+            {
+                test: /\.svg$/,
+                use: ["@svgr/webpack"]
+            }
         ]
     },
     plugins: [

@@ -1,22 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {useGetProducts} from "./api/hooks";
+import {useAppStore} from "./providers/app-store-provider";
+import MainLayout from "./layouts/main-layout";
 
-const App = (): JSX.Element => (
-    <>
-        <h1>Hello World</h1>
+const App = (): JSX.Element => {
+    const appStore = useAppStore();
+    useGetProducts();
 
-        <hr />
+    useEffect(() => {
+        if (appStore.products && !appStore.filters) {
+            appStore.setSelections();
+        }
+    }, [appStore]);
 
-        <h3 className={"2xl:bg-green-300"}>Environmental variables:</h3>
-        <p>
-            process.env.PRODUCTION: <b></b>
-        </p>
-        <p>
-            process.env.NAME: <b></b>
-        </p>
-        <p>
-            process.env.VERSION: <b></b>
-        </p>
-    </>
-);
+    return <MainLayout />;
+};
 
 export default App;

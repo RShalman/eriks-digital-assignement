@@ -3,5 +3,11 @@ import ReactDOM from "react-dom";
 import "tailwindcss/tailwind.css";
 
 import App from "./App";
+import {AppStoreProvider} from "./providers/app-store-provider";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+    <AppStoreProvider>
+        <App />
+    </AppStoreProvider>,
+    document.getElementById("root")
+);
